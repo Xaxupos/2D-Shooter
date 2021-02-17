@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deadSprite: {fileID: 4286416367656288445, guid: 337898d8693019746abd1fff3a2ea6d8, type: 3}
+  healthBar: {fileID: 0}
   moveSpeed: 2
   damage: 1
   health: 1

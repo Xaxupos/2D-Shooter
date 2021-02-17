@@ -16,6 +16,7 @@ TagManager:
   - Civilian
   - Vip
   - EnemyBullet
+  - GunUI
   layers:
   - Default
   - TransparentFX

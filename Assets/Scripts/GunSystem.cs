@@ -14,6 +14,9 @@ public class GunSystem : MonoBehaviour
     GameObject textAmmoGO;
     private Text textAmmo;
 
+    GameObject gunTypeGO;
+    private Text textGunType;
+
     private bool shooting;
     private bool reloading;
 
@@ -47,6 +50,9 @@ public class GunSystem : MonoBehaviour
         textAmmoGO = GameObject.FindGameObjectWithTag("Ammo");
         textAmmo = textAmmoGO.gameObject.GetComponent<Text>();
 
+        gunTypeGO = GameObject.FindGameObjectWithTag("GunUI");
+        textGunType = gunTypeGO.gameObject.GetComponent<Text>();
+
         firePointGO = GameObject.FindGameObjectWithTag("FirePoint");
         firePoint = firePointGO.gameObject.GetComponent<Transform>();
 
@@ -58,7 +64,7 @@ public class GunSystem : MonoBehaviour
         if(gunStats != null)
         {
             MyInput();
-            UpdateAmmoUI();
+            UpdateUI();
         }
         
         if(Input.GetKeyDown(KeyCode.Q))
@@ -85,9 +91,10 @@ public class GunSystem : MonoBehaviour
 
     }
 
-    void UpdateAmmoUI()
+    void UpdateUI()
     {
         textAmmo.text = gunStats.bulletsLeft + "/" + gunStats.magazineSize;
+        textGunType.text = "Gun: " + eq.GetGun(weaponIndex).stats;
     }
 
     void MyInput()
