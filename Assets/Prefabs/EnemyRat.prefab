@@ -151,4 +151,4 @@ MonoBehaviour:
   canShoot: 0
   goldDrop: 2
   sightRange: 3
-  gotAggro: 0
+  knockForce: 5

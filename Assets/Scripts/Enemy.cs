@@ -5,11 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    GameObject playerGO;
-    Transform player;
-
-    GameObject gunSystemGO;
-    GunSystem gun;
+   Transform player;
+   GunSystem gun;
 
     Rigidbody2D rb;
     PlayerStats playerStats;
@@ -25,32 +22,33 @@ public class Enemy : MonoBehaviour
     public int goldDrop = 1;
     public float sightRange = 5f;
     private bool gotAggro;
+    public float knockForce = 1.5f;
+
+     HealthSystem healthSystem;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        gotAggro = false;
-        playerGO = GameObject.FindGameObjectWithTag("Player");
-        player = playerGO.gameObject.GetComponent<Transform>();
+        playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        healthSystem = new HealthSystem(health);
 
-        gunSystemGO = GameObject.FindGameObjectWithTag("Gun");
-        gun = gunSystemGO.gameObject.GetComponent<GunSystem>();
-
-        playerStats = playerGO.gameObject.GetComponent<PlayerStats>();
-        
+        gotAggro = false;     
         rb = this.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Vector3 direction = transform.position;
 
-        Vector3 direction = player.position - transform.position;
+        if(player != null)
+        {
+          direction = player.position - transform.position;
+        }
 
         // rotacja
-
-       // float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg * -90f;
+        // float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg * -90f;
         //rb.rotation = angle;
 
         direction.Normalize();
@@ -59,11 +57,26 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(Vector3.Distance(player.position,transform.position) <= sightRange)
-        {
-            gotAggro = true;
-            moveEnemy(movement);
-        } else if (gotAggro == true)
+
+        rb.velocity *= 0.9f;
+
+        if (Mathf.Abs(rb.velocity.x) <= 0.05f && Mathf.Abs(rb.velocity.y) <= 0.05f)
+            rb.velocity = Vector3.zero;
+
+            Collider2D[] collider = Physics2D.OverlapCircleAll(transform.position, sightRange);
+            foreach(Collider2D col in collider)
+            {
+                if(col.gameObject.CompareTag("Player"))
+                {
+                    player = col.transform;
+                    playerStats = col.GetComponent<PlayerStats>();
+                    gotAggro = true;
+                    moveEnemy(movement);
+                }
+            }          
+         
+        
+        if (gotAggro == true)
         {
             moveEnemy(movement);
         }
@@ -73,33 +86,28 @@ public class Enemy : MonoBehaviour
    
     void moveEnemy(Vector2 direction)
     {
-        rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.fixedDeltaTime));
+        if(rb.velocity.x ==  0 && rb.velocity.y == 0)
+            rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.fixedDeltaTime));
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Bullet"))
         {
-                DealDamageBody();
-           
+            TakeDamage(damage);
         }
-        if (collision.gameObject.tag == "Bullet")
+        if(collision.gameObject.CompareTag("Player"))
         {
-            TakeDamage();
+            Debug.Log("test knockback");
+            Vector2 dir = player.position - transform.position;
+            rb.AddForce(-dir.normalized * knockForce, ForceMode2D.Impulse);
         }
     }
 
-
-    void DealDamageBody()
+    public void TakeDamage(int damage)
     {
-        playerStats.health -= damage;
-    } 
-  
-
-    void TakeDamage()
-    {
-        health -= damage;
-        if(health == 0 || health < 0)
+        healthSystem.TakeDamage(damage);
+        if(healthSystem.isDead())
         {
             playerStats.gold += goldDrop;
             Instantiate(deadSprite, transform.position, Quaternion.identity);

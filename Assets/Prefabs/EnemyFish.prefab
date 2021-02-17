@@ -148,7 +148,7 @@ MonoBehaviour:
   deadSprite: {fileID: 4286416367656288445, guid: 337898d8693019746abd1fff3a2ea6d8, type: 3}
   moveSpeed: 2
   damage: 1
-  health: 1
+  health: 3
   canShoot: 1
   goldDrop: 2
   sightRange: 5

@@ -10,9 +10,8 @@ public class BulletDestroy : MonoBehaviour
     // Start is called before the first frame update
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
 
-        Destroy(effect, 2f);
+       
         if(GameObject.FindGameObjectsWithTag("Bullet").Length>1)
         {
             if (collision.gameObject.CompareTag("Bullet"))
@@ -21,7 +20,10 @@ public class BulletDestroy : MonoBehaviour
             }
             else
             {
+                GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+                Destroy(effect, 2f);
                 Destroy(gameObject);
+                
             }
         }
         

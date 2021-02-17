@@ -6,76 +6,104 @@ using UnityEngine.UI;
 public class GunSystem : MonoBehaviour
 {
 
+    private GunStats gunStats;
+
+    [SerializeField]
+    private Equipment eq;
+
     GameObject textAmmoGO;
-    public Text textAmmo;
+    private Text textAmmo;
 
-
-    //Gun stats
-    public float bulletSpeed;
-    public float timeBetweenShooting;
-    public float timeBetweenShots;
-    public float shootingSpeed;
-    public float reloadTime;
-    public float range;
-
-    public int damage;
-    public int magazineSize;
-    public int bulletsPerTap;
-    public int bulletsLeft;
-    public int bulletsShot;
-
-    //Bools
-    public bool allowButtonHold;
     private bool shooting;
-    private bool readyToShoot;
     private bool reloading;
+
+    private int weaponIndex;
 
     //References
     GameObject firePointGO;
-    public Transform firePoint;
+    private Transform firePoint;
 
-    public GameObject bullet;
+    private GameObject bullet;
 
+    private void Start()
+    {
+        Invoke("AddGun", 0.1f);
+    }
+
+    void AddGun()
+    {
+        //tutaj te co posiadam w EQ
+        eq.AddGun(Equipment.GunType.Pistol);
+        eq.AddGun(Equipment.GunType.Shotgun);
+        eq.AddGun(Equipment.GunType.Sniper);
+
+        gunStats = eq.GetGun(0).stats;
+        gunStats.bulletsLeft = gunStats.magazineSize;
+    }
 
     private void Awake()
     {
+        weaponIndex = 0;
         textAmmoGO = GameObject.FindGameObjectWithTag("Ammo");
         textAmmo = textAmmoGO.gameObject.GetComponent<Text>();
+
         firePointGO = GameObject.FindGameObjectWithTag("FirePoint");
         firePoint = firePointGO.gameObject.GetComponent<Transform>();
 
-        bullet = GameObject.FindGameObjectWithTag("Bullet");
-
-        bulletsLeft = magazineSize;
-        readyToShoot = true;
+        bullet = GameObject.FindGameObjectWithTag("Bullet");       
     }
 
     private void Update()
     {
-        MyInput();
-        UpdateAmmoUI();
+        if(gunStats != null)
+        {
+            MyInput();
+            UpdateAmmoUI();
+        }
         
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            weaponIndex--;
+            if (weaponIndex < 0)
+            {             
+                weaponIndex = eq.GetBoughtGun().Count-1;
+                
+            }
+            gunStats = eq.GetGun(weaponIndex).stats;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            weaponIndex++;
+            if(weaponIndex > eq.GetBoughtGun().Count-1)
+            {
+                weaponIndex = 0;
+                
+            }
+            gunStats = eq.GetGun(weaponIndex).stats;
+        }
+
     }
 
     void UpdateAmmoUI()
     {
-        textAmmo.text = bulletsLeft + "/" + magazineSize;
+        textAmmo.text = gunStats.bulletsLeft + "/" + gunStats.magazineSize;
     }
 
     void MyInput()
     {
-        if (allowButtonHold)
+        if (gunStats.allowButtonHold)
             shooting = Input.GetKey(KeyCode.Mouse0);
         else
-            shooting = Input.GetKeyDown(KeyCode.Mouse0);
+           shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
-        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading)
+        if (Input.GetKeyDown(KeyCode.R) && gunStats.bulletsLeft < gunStats.magazineSize && ! reloading)
             Reload();
 
         //Shoot
-        if (readyToShoot && shooting && !reloading && bulletsLeft > 0)
+        if (shooting && !reloading && gunStats.bulletsLeft > 0)
         {
-            bulletsShot = bulletsPerTap;
+            gunStats.bulletsShot = gunStats.bulletsPerTap;
             Shoot();
         }
             
@@ -85,36 +113,30 @@ public class GunSystem : MonoBehaviour
     void Reload()
     {
         reloading = true;
-        Invoke("ReloadFinished", reloadTime);
-    }
-
-    void ResetShot()
-    {
-        readyToShoot = true;
+        Invoke("ReloadFinished", gunStats.reloadTime);
     }
 
     void Shoot()
     {
-        readyToShoot = false;
 
         GameObject bullet1 = Instantiate(bullet, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet1.GetComponent<Rigidbody2D>();
 
-        rb.AddForce(firePoint.up * bulletSpeed, ForceMode2D.Impulse);
+        rb.AddForce(firePoint.up * gunStats.bulletSpeed, ForceMode2D.Impulse);
 
-        bulletsLeft--;
-        bulletsShot--;
+        gunStats.bulletsLeft--;
+        gunStats.bulletsShot--;
 
-        Invoke("ResetShot", timeBetweenShooting);
+        Invoke("ResetShot", gunStats.timeBetweenShooting);
 
-        if (bulletsShot > 0 && bulletsLeft > 0)
-            Invoke("Shoot", timeBetweenShots);
+        if (gunStats.bulletsShot > 0 && gunStats.bulletsLeft > 0)
+            Invoke("Shoot", gunStats.timeBetweenShots);
       
     }
 
     void ReloadFinished()
     {
-        bulletsLeft = magazineSize;
+        gunStats.bulletsLeft = gunStats.magazineSize;
         reloading = false;
     }
 

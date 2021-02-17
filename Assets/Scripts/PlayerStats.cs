@@ -6,28 +6,19 @@ using UnityEngine.UI;
 public class PlayerStats : MonoBehaviour
 {
 
-    GameObject textHealthGO;
     public Text textHealth;
-
-    GameObject textGoldGO;
     public Text textGold;
 
+    HealthSystem healthSystem;
 
-
-    public float maxHealth = 15f;
-    public float health = 15f;
+    public int health = 15;
     public int gold = 0; 
 
 
     private void Start()
     {
-        health = maxHealth;
-
-        textHealthGO = GameObject.FindGameObjectWithTag("Health");
-        textHealth = textHealthGO.gameObject.GetComponent<Text>();
-
-        textGoldGO = GameObject.FindGameObjectWithTag("Gold");
-        textGold = textGoldGO.gameObject.GetComponent<Text>();
+        healthSystem = new HealthSystem(health);
+        
     }
 
     private void Update()
@@ -38,18 +29,36 @@ public class PlayerStats : MonoBehaviour
 
     void UpdateUI()
     {
-        textHealth.text = "HP:"+health + "/" + maxHealth;
+        textHealth.text = healthSystem.ToString();
         textGold.text = "Gold:" + gold;
     }
 
     void CheckPlayerHP()
     {
-        if(health==0 || health<0)
+        if(healthSystem.isDead())
         {
             //end game
             Destroy(gameObject);
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            int enemyDamage = collision.gameObject.GetComponent<Enemy>().damage;
+            TakeDamage(enemyDamage);
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        healthSystem.TakeDamage(damage);
+        if (healthSystem.isDead())
+        {
+           // Instantiate(transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+    }
 
 }
