@@ -62,10 +62,11 @@ public class GunSystem : MonoBehaviour
 
     private void Update()
     {
-        if(gunStats != null)
+        gunStats = eq.GetGun(weaponIndex).stats;
+
+        if (gunStats != null)
         {
             MyInput();
-            Debug.Log(timer);
             UpdateUI();
         }
         

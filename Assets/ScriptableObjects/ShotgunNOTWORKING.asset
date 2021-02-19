@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ff6f7f583518b6419b1eae13732d4a8, type: 3}
-  m_Name: Shotgun
+  m_Name: ShotgunNOTWORKING
   m_EditorClassIdentifier: 
   bulletSpeed: 5
   timeBetweenShooting: 1
-  timeBetweenShots: 0
+  timeBetweenShots: 0.1
   shootingSpeed: 3
   reloadTime: 2
   range: 7
-  damage: 1
+  damage: 2
   magazineSize: 10
   bulletsPerTap: 4
-  bulletsLeft: 0
+  bulletsLeft: 6
   bulletsShot: 0
   allowButtonHold: 0

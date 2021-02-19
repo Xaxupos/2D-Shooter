@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff6f7f583518b6419b1eae13732d4a8, type: 3}
   m_Name: Sniper
   m_EditorClassIdentifier: 
-  bulletSpeed: 10
+  bulletSpeed: 17
   timeBetweenShooting: 2
   timeBetweenShots: 0
   shootingSpeed: 7
@@ -21,6 +21,6 @@ MonoBehaviour:
   damage: 5
   magazineSize: 5
   bulletsPerTap: 1
-  bulletsLeft: 3
+  bulletsLeft: 5
   bulletsShot: 0
   allowButtonHold: 0
