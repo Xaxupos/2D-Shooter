@@ -8,6 +8,8 @@ public class GunSystem : MonoBehaviour
 
     private GunStats gunStats;
 
+    private float timer;
+
     [SerializeField]
     private Equipment eq;
 
@@ -22,10 +24,10 @@ public class GunSystem : MonoBehaviour
 
     private int weaponIndex;
 
-    //References
-    GameObject firePointGO;
+    [SerializeField]
     private Transform firePoint;
 
+    [SerializeField]
     private GameObject bullet;
 
     private void Start()
@@ -53,17 +55,17 @@ public class GunSystem : MonoBehaviour
         gunTypeGO = GameObject.FindGameObjectWithTag("GunUI");
         textGunType = gunTypeGO.gameObject.GetComponent<Text>();
 
-        firePointGO = GameObject.FindGameObjectWithTag("FirePoint");
-        firePoint = firePointGO.gameObject.GetComponent<Transform>();
-
-        bullet = GameObject.FindGameObjectWithTag("Bullet");       
+           
     }
+
+
 
     private void Update()
     {
         if(gunStats != null)
         {
             MyInput();
+            Debug.Log(timer);
             UpdateUI();
         }
         
@@ -108,12 +110,14 @@ public class GunSystem : MonoBehaviour
             Reload();
 
         //Shoot
-        if (shooting && !reloading && gunStats.bulletsLeft > 0)
+        if (shooting && !reloading && gunStats.bulletsLeft > 0 && timer <= 0)
         {
             gunStats.bulletsShot = gunStats.bulletsPerTap;
             Shoot();
         }
-            
+
+        if(timer > 0 )
+            timer -= Time.deltaTime;
 
     }
 
@@ -129,12 +133,15 @@ public class GunSystem : MonoBehaviour
         GameObject bullet1 = Instantiate(bullet, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet1.GetComponent<Rigidbody2D>();
 
+        bullet1.GetComponent<Bullet>().damage = gunStats.damage;
+
         rb.AddForce(firePoint.up * gunStats.bulletSpeed, ForceMode2D.Impulse);
 
         gunStats.bulletsLeft--;
         gunStats.bulletsShot--;
 
-        Invoke("ResetShot", gunStats.timeBetweenShooting);
+        if(gunStats.timeBetweenShooting > 0)
+            timer = gunStats.timeBetweenShooting;
 
         if (gunStats.bulletsShot > 0 && gunStats.bulletsLeft > 0)
             Invoke("Shoot", gunStats.timeBetweenShots);

@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6354313961288881572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -145,11 +145,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deadSprite: {fileID: 4286416367656288445, guid: 337898d8693019746abd1fff3a2ea6d8, type: 3}
-  healthBar: {fileID: 0}
   moveSpeed: 2
   damage: 1
   health: 1
   canShoot: 0
   goldDrop: 2
   sightRange: 3
-  knockForce: 5
+  knockForce: 3
+  bullet: {fileID: 5916293462967756558, guid: c636cf8768ced6644a7d5a5a9a1308e7, type: 3}

@@ -25,7 +25,7 @@ public class Equipment : MonoBehaviour
 
     public void AddGun(GunType type)
     {
-       
+
         foreach(Gun gun in guns)
         {
             Debug.Log(gun);

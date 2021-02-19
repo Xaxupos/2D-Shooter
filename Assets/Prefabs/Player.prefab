@@ -58,8 +58,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1160638721987104766}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.32118952, y: -0.5238843, z: 0.110012665}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1160638722867143653}
@@ -182,7 +182,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textHealth: {fileID: 0}
   textGold: {fileID: 0}
-  maxHealth: 15
   health: 15
   gold: 0
 --- !u!1 &1160638722460065862
@@ -281,21 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258cb8a529a3fe145bf0b02c2d75ebb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textAmmo: {fileID: 0}
-  bulletSpeed: 15
-  timeBetweenShooting: 0.2
-  timeBetweenShots: 0
-  shootingSpeed: 0
-  reloadTime: 1
-  range: 100
-  damage: 1
-  magazineSize: 10
-  bulletsPerTap: 1
-  bulletsLeft: 0
-  bulletsShot: 0
-  allowButtonHold: 0
-  firePoint: {fileID: 0}
-  bullet: {fileID: 0}
+  eq: {fileID: 0}
 --- !u!1 &1160638722867143654
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,6 +21,6 @@ MonoBehaviour:
   damage: 1
   magazineSize: 10
   bulletsPerTap: 4
-  bulletsLeft: 10
-  bulletsShot: 2
+  bulletsLeft: 0
+  bulletsShot: 0
   allowButtonHold: 0

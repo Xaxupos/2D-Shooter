@@ -5,12 +5,24 @@ using UnityEngine;
 public class CivilStats : MonoBehaviour
 {
 
+    enum CivilType
+    {
+        Civilian,
+        Vip
+    }
 
     GameObject playerGO;
     PlayerStats playerStats;
 
+    [SerializeField]
+    private CivilType type;
+
+    HealthSystem hpSystem;
+    public int health;
+
     private void Start()
     {
+        hpSystem = new HealthSystem(health);
         playerGO = GameObject.FindGameObjectWithTag("Player");
         playerStats = playerGO.gameObject.GetComponent<PlayerStats>();
     }
@@ -20,13 +32,40 @@ public class CivilStats : MonoBehaviour
 
         if (collision.gameObject.tag == "Bullet")
         {
-            if (this.CompareTag("Civilian"))
+            hpSystem.TakeDamage(collision.gameObject.GetComponent<Bullet>().damage);
+            if (type == CivilType.Civilian)
             {
-                playerStats.gold -= 5;
+
+                if(hpSystem.GetHealth() > 0)
+                {
+                    playerStats.gold -= 5;
+                }
+                if(hpSystem.isDead())
+                {
+                    playerStats.gold -= 15;
+                    Destroy(gameObject);
+                }
             }
-            if(this.CompareTag("Vip"))
+
+            if(type == CivilType.Vip)
             {
-                Destroy(playerGO);
+                if(hpSystem.isDead())
+                {
+                    //game over
+                    Destroy(playerGO);
+                    Destroy(gameObject);
+                }
+               
+            }
+        }
+
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            
+            hpSystem.TakeDamage(collision.gameObject.GetComponent<Enemy>().damage);
+
+            if (hpSystem.isDead())
+            {
                 Destroy(gameObject);
             }
         }

@@ -145,13 +145,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3da71ff13a70d4448e77fb2123df84e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firePoint: {fileID: 6752077609830428207}
   deadSprite: {fileID: 4286416367656288445, guid: 337898d8693019746abd1fff3a2ea6d8, type: 3}
   moveSpeed: 2
-  damage: 1
+  damage: 2
   health: 3
-  canShoot: 1
   goldDrop: 2
   sightRange: 5
+  knockForce: 1.5
+  timeBetweenShooting: 1
+  canShoot: 1
+  bullet: {fileID: 5916293462967756558, guid: c636cf8768ced6644a7d5a5a9a1308e7, type: 3}
+  bulletSpeed: 4
 --- !u!1001 &895342565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -207,10 +212,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pistol
       objectReference: {fileID: 0}
+    - target: {fileID: 6752077609474095562, guid: 517ef6d747904f14884248444ef42166, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.91
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 517ef6d747904f14884248444ef42166, type: 3}
 --- !u!4 &6752077610253511089 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6752077609369779796, guid: 517ef6d747904f14884248444ef42166, type: 3}
+  m_PrefabInstance: {fileID: 895342565}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6752077609830428207 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6752077609474095562, guid: 517ef6d747904f14884248444ef42166, type: 3}
   m_PrefabInstance: {fileID: 895342565}
   m_PrefabAsset: {fileID: 0}

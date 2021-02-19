@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Sniper
   m_EditorClassIdentifier: 
   bulletSpeed: 10
-  timeBetweenShooting: 1
-  timeBetweenShots: 3
+  timeBetweenShooting: 2
+  timeBetweenShots: 0
   shootingSpeed: 7
   reloadTime: 2
   range: 7
   damage: 5
-  magazineSize: 10
+  magazineSize: 5
   bulletsPerTap: 1
-  bulletsLeft: 8
+  bulletsLeft: 3
   bulletsShot: 0
   allowButtonHold: 0
