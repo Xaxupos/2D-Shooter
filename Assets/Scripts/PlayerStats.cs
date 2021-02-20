@@ -49,7 +49,7 @@ public class PlayerStats : MonoBehaviour
             int enemyDamage = collision.gameObject.GetComponent<Enemy>().damage;
             TakeDamage(enemyDamage);
         }
-        if(collision.gameObject.CompareTag("Bullet"))
+        if(collision.gameObject.CompareTag("EnemyBullet"))
         {
             int bulletDamage = collision.gameObject.GetComponent<Bullet>().damage;
             TakeDamage(bulletDamage);

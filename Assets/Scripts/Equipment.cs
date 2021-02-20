@@ -32,7 +32,7 @@ public class Equipment : MonoBehaviour
             if (type == gun.type)
             {
                 gun.stats.bulletsLeft = gun.stats.magazineSize;
-                Debug.Log("Typ:" + gun.type);
+                
                 boughtGuns.Add(gun);
             }
         }

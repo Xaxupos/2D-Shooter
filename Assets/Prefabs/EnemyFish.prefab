@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6354313961288881568}
   - component: {fileID: 6354313961288881571}
   - component: {fileID: 6354313961288881573}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyFish
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ MonoBehaviour:
   knockForce: 1.5
   timeBetweenShooting: 1
   canShoot: 1
-  bullet: {fileID: 5916293462967756558, guid: c636cf8768ced6644a7d5a5a9a1308e7, type: 3}
+  bullet: {fileID: 5916293462967756558, guid: 89a852bf9fbf3854abfdf608f8f7abc7, type: 3}
   bulletSpeed: 4
 --- !u!1001 &895342565
 PrefabInstance:
@@ -212,9 +212,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pistol
       objectReference: {fileID: 0}
+    - target: {fileID: 6752077609369779797, guid: 517ef6d747904f14884248444ef42166, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6752077609474095562, guid: 517ef6d747904f14884248444ef42166, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 6752077609474095563, guid: 517ef6d747904f14884248444ef42166, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 517ef6d747904f14884248444ef42166, type: 3}

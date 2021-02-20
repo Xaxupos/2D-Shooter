@@ -40,7 +40,8 @@ public class Enemy : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    { 
+    {
+        Physics2D.IgnoreLayerCollision(8, 9);
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         healthSystem = new HealthSystem(health);
 
@@ -202,14 +203,20 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            TakeDamage(damage);
+            int bulletDamage = collision.gameObject.GetComponent<Bullet>().damage;
+            TakeDamage(bulletDamage);
         }
 
         if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Vip"))
         {
-            Debug.Log("test knockback");
+            
             Vector2 dir = target.position - transform.position;
             rb.AddForce(-dir.normalized * knockForce, ForceMode2D.Impulse);
+        }
+
+        if(collision.gameObject.CompareTag("EnemyBullet"))
+        {
+            return;
         }
 
     }
