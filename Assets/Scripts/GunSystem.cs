@@ -6,6 +6,12 @@ using UnityEngine.UI;
 public class GunSystem : MonoBehaviour
 {
 
+    
+    private Sprite gunSprite;
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+
+
     private GunStats gunStats;
 
     private float timer;
@@ -78,8 +84,10 @@ public class GunSystem : MonoBehaviour
                 Debug.Log("GetBoughtGun Count: " + (eq.GetBoughtGun().Count-1));
                 weaponIndex = eq.GetBoughtGun().Count-1;
                 
-            }
+            }          
             gunStats = eq.GetGun(weaponIndex).stats;
+            gunSprite = gunStats.gunSprite;
+            spriteRenderer.sprite = gunSprite;
         }
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -90,7 +98,10 @@ public class GunSystem : MonoBehaviour
                 weaponIndex = 0;
                 
             }
+           
             gunStats = eq.GetGun(weaponIndex).stats;
+            gunSprite = gunStats.gunSprite;
+            spriteRenderer.sprite = gunSprite;
         }
 
     }

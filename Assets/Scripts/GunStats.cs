@@ -22,6 +22,9 @@ public class GunStats : ScriptableObject
 
     //Bools
     public bool allowButtonHold;
+
+    //Sprites
+    public Sprite gunSprite;
     
 
 

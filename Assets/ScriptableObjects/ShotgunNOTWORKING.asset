@@ -21,6 +21,7 @@ MonoBehaviour:
   damage: 2
   magazineSize: 10
   bulletsPerTap: 4
-  bulletsLeft: 6
+  bulletsLeft: 10
   bulletsShot: 0
   allowButtonHold: 0
+  gunSprite: {fileID: 21300000, guid: 1ce1947943c6a694ab95ff8245f3875f, type: 3}

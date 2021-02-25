@@ -24,3 +24,4 @@ MonoBehaviour:
   bulletsLeft: 5
   bulletsShot: 0
   allowButtonHold: 0
+  gunSprite: {fileID: 21300000, guid: d2256b11a1ee7c143b54e69279424af5, type: 3}
