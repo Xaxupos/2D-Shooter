@@ -18,6 +18,11 @@ public class HealthSystem
         return health;
     }
 
+    public int GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
     public override string ToString()
     {
         return "HP:" + health + "/" + maxHealth;

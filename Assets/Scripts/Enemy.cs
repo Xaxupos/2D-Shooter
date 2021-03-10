@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private Transform firePoint;
 
+    public HealthBar hpBar;
+
     Rigidbody2D rb;
     PlayerStats playerStats;
     Vector2 movement;
@@ -21,6 +23,7 @@ public class Enemy : MonoBehaviour
     public float moveSpeed = 1f;
     public int damage = 1;
     public int health = 1;  
+    public int maxHealth = 1;  
     public int goldDrop = 1;
     public float sightRange = 5f;
     private bool gotAggro;
@@ -41,6 +44,8 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       
+        hpBar.SetMaxHealth(maxHealth);
         Physics2D.IgnoreLayerCollision(8, 9);
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         healthSystem = new HealthSystem(health);
@@ -52,16 +57,12 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-
         if(timer > 0)
             timer -= Time.deltaTime;
     }
 
     private void FixedUpdate()
     {
-
-        
 
         Vector3 direction = transform.position;
 
@@ -223,14 +224,15 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        healthSystem.TakeDamage(damage);
-        FloatingText.Create(transform.position, damage.ToString(), new Vector2(0.3f, 0.75f));
+        healthSystem.TakeDamage(damage);      
+        FloatingText.Create(transform.position, damage.ToString(), new Vector2(0.3f, 0.75f));      
         if (healthSystem.isDead())
         {
             playerStats.gold += goldDrop;
             Instantiate(deadSprite, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
+       hpBar.SetHealth(healthSystem.GetHealth());
     }
 
 }

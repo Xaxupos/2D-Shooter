@@ -28,7 +28,7 @@ public class Equipment : MonoBehaviour
 
         foreach(Gun gun in guns)
         {
-            Debug.Log(gun);
+           
             if (type == gun.type)
             {
                 gun.stats.bulletsLeft = gun.stats.magazineSize;
