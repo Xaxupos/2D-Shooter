@@ -19,6 +19,11 @@ public class Equipment : MonoBehaviour
         Sniper
     }
 
+    private void Start()
+    {
+        Debug.Log("Liczba posiadanych broni: "+boughtGuns.Count);
+    }
+
     [SerializeField]
     private List<Gun> guns;
     private List<Gun> boughtGuns = new List<Gun>();

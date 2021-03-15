@@ -146,18 +146,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 0}
-  hpBar: {fileID: 0}
+  hpBar: {fileID: 555093948603407849}
   deadSprite: {fileID: 4286416367656288445, guid: 337898d8693019746abd1fff3a2ea6d8, type: 3}
   moveSpeed: 2
   damage: 1
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   goldDrop: 2
   sightRange: 3
   knockForce: 3
   timeBetweenShooting: 0
   canShoot: 0
-  bullet: {fileID: 5916293462967756558, guid: c636cf8768ced6644a7d5a5a9a1308e7, type: 3}
+  bullet: {fileID: 5916293462967756558, guid: 89a852bf9fbf3854abfdf608f8f7abc7, type: 3}
   bulletSpeed: 0
 --- !u!1001 &1419635651
 PrefabInstance:
@@ -262,6 +262,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 555093947572661391, guid: d1c2456c3d59cee47a0a9fe8d6f636f9, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 6354313961288881570}
+    - target: {fileID: 555093947572661391, guid: d1c2456c3d59cee47a0a9fe8d6f636f9, type: 3}
+      propertyPath: offset.y
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 555093947786309833, guid: d1c2456c3d59cee47a0a9fe8d6f636f9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -273,3 +281,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 555093947572661390, guid: d1c2456c3d59cee47a0a9fe8d6f636f9, type: 3}
   m_PrefabInstance: {fileID: 1419635651}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &555093948603407849 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 555093947201123882, guid: d1c2456c3d59cee47a0a9fe8d6f636f9, type: 3}
+  m_PrefabInstance: {fileID: 1419635651}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59a70442bd992f149a06ed121ace467e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

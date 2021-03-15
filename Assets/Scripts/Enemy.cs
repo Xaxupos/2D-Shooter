@@ -44,7 +44,6 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
         hpBar.SetMaxHealth(maxHealth);
         Physics2D.IgnoreLayerCollision(8, 9);
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
@@ -233,6 +232,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
        hpBar.SetHealth(healthSystem.GetHealth());
+       
     }
 
 }

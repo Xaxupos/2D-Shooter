@@ -7,9 +7,10 @@ public class ItemDatabase : MonoBehaviour
 
     public List<Item> items = new List<Item>();
 
-    private void Start()
+    private void Awake()
     {
         BuildDatabase();
+        Debug.Log("Liczba itemow w bazie: " + items.Count);
     }
 
     public Item GetItem(int id)

@@ -38,7 +38,7 @@ public class GunSystem : MonoBehaviour
 
     private void Start()
     {
-        Invoke("AddGun", 0.3f);
+        AddGun();
     }
 
     void AddGun()
@@ -81,7 +81,6 @@ public class GunSystem : MonoBehaviour
             weaponIndex--;
             if (weaponIndex < 0)
             {
-                Debug.Log("GetBoughtGun Count: " + (eq.GetBoughtGun().Count-1));
                 weaponIndex = eq.GetBoughtGun().Count-1;
                 
             }          

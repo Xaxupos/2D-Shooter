@@ -11,6 +11,8 @@ public class Bullet : MonoBehaviour
     private void Start()
     {
         Physics2D.IgnoreLayerCollision(7,7);
+        Physics2D.IgnoreLayerCollision(7, 10);
+       
     }
 
     // Start is called before the first frame update
