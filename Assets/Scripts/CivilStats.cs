@@ -11,6 +11,7 @@ public class CivilStats : MonoBehaviour
         Vip
     }
 
+    public HealthBar hpBar;
     GameObject playerGO;
     PlayerStats playerStats;
 
@@ -19,12 +20,16 @@ public class CivilStats : MonoBehaviour
 
     HealthSystem hpSystem;
     public int health;
+    public int maxHealth;
 
     private void Start()
     {
+        hpBar.SetMaxHealth(maxHealth);
         hpSystem = new HealthSystem(health);
         playerGO = GameObject.FindGameObjectWithTag("Player");
         playerStats = playerGO.gameObject.GetComponent<PlayerStats>();
+
+        health = maxHealth;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -33,6 +38,7 @@ public class CivilStats : MonoBehaviour
         if (collision.gameObject.tag == "Bullet")
         {
             hpSystem.TakeDamage(collision.gameObject.GetComponent<Bullet>().damage);
+            hpBar.SetHealth(hpSystem.GetHealth());
             if (type == CivilType.Civilian)
             {
 
@@ -61,12 +67,17 @@ public class CivilStats : MonoBehaviour
 
         if(collision.gameObject.CompareTag("Enemy"))
         {
-            
-            hpSystem.TakeDamage(collision.gameObject.GetComponent<Enemy>().damage);
+        
 
+            hpSystem.TakeDamage(collision.gameObject.GetComponent<Enemy>().damage);
+            hpBar.SetHealth(hpSystem.GetHealth());
             if (hpSystem.isDead())
             {
                 Destroy(gameObject);
+                if(type == CivilType.Vip)
+                {
+                    Destroy(playerGO);
+                }
             }
         }
     }

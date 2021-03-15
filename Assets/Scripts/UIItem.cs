@@ -37,7 +37,7 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(this.item != null)
+       if(this.item != null)
         {
             if(selectedItem.item != null)
             {
@@ -56,6 +56,7 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
             UpdateItem(selectedItem.item);
             selectedItem.UpdateItem(null);
         }
+       
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -70,4 +71,5 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
     {
         tooltip.gameObject.SetActive(false);
     }
+
 }

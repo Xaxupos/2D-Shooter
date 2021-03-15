@@ -62,13 +62,15 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        
         Vector3 direction = transform.position;
 
         if (target != null)
         {
             direction = target.position - transform.position;
+
         }
+
 
         direction.Normalize();
         movement = direction;
@@ -78,17 +80,17 @@ public class Enemy : MonoBehaviour
 
         rb.velocity *= 0.9f;
 
-        if (Mathf.Abs(rb.velocity.x) <= 0.05f && Mathf.Abs(rb.velocity.y) <= 0.12f)
+        if (Mathf.Abs(rb.velocity.x) <= 0.04f && Mathf.Abs(rb.velocity.y) <= 0.11f)
             rb.velocity = Vector3.zero;
 
 
-        if (gotAggro == false || target == null)
+        if (gotAggro == false && target == null)
         {
             Collider2D[] collider = Physics2D.OverlapCircleAll(transform.position, sightRange);
            
             foreach (Collider2D col in collider)
             {
-                if (col.gameObject.CompareTag("Vip"))
+                if (col.gameObject.CompareTag("Vip") || col.gameObject.CompareTag("Civilian"))
                 {
                     target = col.transform;
                     gotAggro = true;
@@ -105,8 +107,7 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
-
-        FindClosestTarget();
+            FindClosestTarget();
 
         if (gotAggro == true && !canShoot)
         {
@@ -126,7 +127,7 @@ public class Enemy : MonoBehaviour
             }
             moveEnemy(movement);
         }
-        
+
     }
 
     void FindClosestTarget()
@@ -139,7 +140,7 @@ public class Enemy : MonoBehaviour
             
             foreach (Collider2D col in col2)
             {
-                if (col.gameObject.CompareTag("Vip"))
+                if (col.gameObject.CompareTag("Vip") || col.gameObject.CompareTag("Civilian"))
                 {
                     aggroTargets.Add(col);
                 }
@@ -175,9 +176,8 @@ public class Enemy : MonoBehaviour
                 target = aggroTargets[index].transform;
                 //KONIEC ZMIANA AGGRO
             }
-
         }
-
+       
     }
 
     void EnemyShoot()
@@ -207,7 +207,8 @@ public class Enemy : MonoBehaviour
             TakeDamage(bulletDamage);
         }
 
-        if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Vip"))
+        if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Vip") || collision.gameObject.CompareTag("Civilian"))
+
         {
             
             Vector2 dir = target.position - transform.position;
