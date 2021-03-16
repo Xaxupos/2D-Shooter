@@ -11,6 +11,7 @@ public class GunSystem : MonoBehaviour
     [SerializeField]
     private SpriteRenderer spriteRenderer;
 
+    public GameObject inventoryPanel;
 
     private GunStats gunStats;
 
@@ -119,10 +120,12 @@ public class GunSystem : MonoBehaviour
             Reload();
 
         //Shoot
-        if (shooting && !reloading && gunStats.bulletsLeft > 0 && timer <= 0)
-        {
-            gunStats.bulletsShot = gunStats.bulletsPerTap;
-            Shoot();
+        if (shooting && !reloading && gunStats.bulletsLeft > 0 && timer <= 0 && inventoryPanel.activeSelf == false)
+        {     
+
+                gunStats.bulletsShot = gunStats.bulletsPerTap;
+                Shoot();         
+          
         }
 
         if(timer > 0 )

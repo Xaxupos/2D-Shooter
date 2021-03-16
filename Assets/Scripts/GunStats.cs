@@ -6,7 +6,11 @@ using UnityEngine;
 public class GunStats : ScriptableObject
 {
 
-    //Gun stats
+    //Gun
+    public GameObject gunPrefab;
+    public Sprite gunSprite;
+
+
     public float bulletSpeed;
     public float timeBetweenShooting;
     public float timeBetweenShots;
@@ -23,10 +27,5 @@ public class GunStats : ScriptableObject
 
     //Bools
     public bool allowButtonHold;
-
-    //Sprites
-    public Sprite gunSprite;
-    
-
 
 }
