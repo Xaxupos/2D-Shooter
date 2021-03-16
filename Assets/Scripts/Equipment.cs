@@ -38,7 +38,7 @@ public class Equipment : MonoBehaviour
             {
                 gun.stats.bulletsLeft = gun.stats.magazineSize;
                 
-                boughtGuns.Add(gun);
+               boughtGuns.Add(gun);
             }
         }
     }

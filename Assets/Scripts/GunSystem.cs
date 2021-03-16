@@ -36,14 +36,11 @@ public class GunSystem : MonoBehaviour
     [SerializeField]
     private GameObject bullet;
 
-    private void Start()
-    {
-        AddGun();
-    }
-
     void AddGun()
     {
         //tutaj te co posiadam w EQ
+        eq.AddGun(Equipment.GunType.Pistol);
+        eq.AddGun(Equipment.GunType.Pistol);
         eq.AddGun(Equipment.GunType.Pistol);
         eq.AddGun(Equipment.GunType.Shotgun);
         eq.AddGun(Equipment.GunType.Sniper);
@@ -61,7 +58,7 @@ public class GunSystem : MonoBehaviour
         gunTypeGO = GameObject.FindGameObjectWithTag("GunUI");
         textGunType = gunTypeGO.gameObject.GetComponent<Text>();
 
-           
+        AddGun();
     }
 
 
@@ -142,11 +139,18 @@ public class GunSystem : MonoBehaviour
     void Shoot()
     {
 
-        GameObject bullet1 = Instantiate(bullet, firePoint.position, firePoint.rotation);
+        float randomNumberX = Random.Range(-gunStats.spreadValue, gunStats.spreadValue);
+        float randomNumberY = Random.Range(-gunStats.spreadValue/2, gunStats.spreadValue/2);
+
+        Vector2 spread = new Vector2(randomNumberX, randomNumberY);
+        Vector2 shotPos = (Vector2)firePoint.position + spread;
+
+        GameObject bullet1 = Instantiate(bullet, shotPos, firePoint.rotation);
         Rigidbody2D rb = bullet1.GetComponent<Rigidbody2D>();
 
         bullet1.GetComponent<Bullet>().damage = gunStats.damage;
 
+       
         rb.AddForce(firePoint.up * gunStats.bulletSpeed, ForceMode2D.Impulse);
 
         gunStats.bulletsLeft--;

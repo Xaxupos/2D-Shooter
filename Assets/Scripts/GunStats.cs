@@ -19,6 +19,7 @@ public class GunStats : ScriptableObject
     public int bulletsPerTap;
     public int bulletsLeft;
     public int bulletsShot;
+    public float spreadValue;
 
     //Bools
     public bool allowButtonHold;
