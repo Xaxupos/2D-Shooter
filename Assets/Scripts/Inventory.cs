@@ -22,10 +22,12 @@ public class Inventory : MonoBehaviour
             inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
             if(inventoryUI.gameObject.activeInHierarchy == true)
             {
+                Cursor.visible = true;
                 Time.timeScale = 0;
             } 
             else if(inventoryUI.gameObject.activeInHierarchy == false)
             {
+                Cursor.visible = false;
                 Time.timeScale = 1;
             }
         }

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff6f7f583518b6419b1eae13732d4a8, type: 3}
   m_Name: Sniper
   m_EditorClassIdentifier: 
-  bulletSpeed: 33
+  gunPrefab: {fileID: 0}
+  gunSprite: {fileID: 21300000, guid: d2256b11a1ee7c143b54e69279424af5, type: 3}
+  bulletSpeed: 32
   timeBetweenShooting: 2
   timeBetweenShots: 0
   shootingSpeed: 7
@@ -21,7 +23,7 @@ MonoBehaviour:
   damage: 5
   magazineSize: 5
   bulletsPerTap: 1
-  bulletsLeft: 4
+  bulletsLeft: 5
   bulletsShot: 0
+  spreadValue: 0
   allowButtonHold: 0
-  gunSprite: {fileID: 21300000, guid: d2256b11a1ee7c143b54e69279424af5, type: 3}

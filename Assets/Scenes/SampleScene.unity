@@ -1075,7 +1075,7 @@ MonoBehaviour:
   uIItems: []
   slotPrefab: {fileID: 6727224455064897619, guid: b59f65a6c76a0b1468fb646f75194c58, type: 3}
   slotPanel: {fileID: 2024894518}
-  numberOfSlots: 4
+  numberOfSlots: 24
 --- !u!1001 &452035847
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1291,7 +1291,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 334290438, guid: 2aa8a1d3fbf3de046a3457520fd3eb15, type: 3}
   m_PrefabInstance: {fileID: 1160638722432105971}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 574064978}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d5039c8c640e4448bd364ca9c8add80, type: 3}
@@ -1472,6 +1472,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 522347158}
   m_CullTransparentMesh: 1
+--- !u!1 &574064978 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1160638721987104766, guid: 2aa8a1d3fbf3de046a3457520fd3eb15, type: 3}
+  m_PrefabInstance: {fileID: 1160638722432105971}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &574064979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574064978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8db2da6ac481b8747bc159531b6fdd90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &577352534
 GameObject:
   m_ObjectHideFlags: 0
@@ -6360,7 +6377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 30
+    m_Left: 35
     m_Right: 0
     m_Top: 15
     m_Bottom: 15

@@ -90,7 +90,7 @@ public class Enemy : MonoBehaviour
            
             foreach (Collider2D col in collider)
             {
-                if (col.gameObject.CompareTag("Vip") || col.gameObject.CompareTag("Civilian"))
+                if (col.gameObject.CompareTag("Vip"))
                 {
                     target = col.transform;
                     gotAggro = true;
@@ -140,7 +140,7 @@ public class Enemy : MonoBehaviour
             
             foreach (Collider2D col in col2)
             {
-                if (col.gameObject.CompareTag("Vip") || col.gameObject.CompareTag("Civilian"))
+                if (col.gameObject.CompareTag("Vip"))
                 {
                     aggroTargets.Add(col);
                 }
@@ -207,7 +207,7 @@ public class Enemy : MonoBehaviour
             TakeDamage(bulletDamage);
         }
 
-        if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Vip") || collision.gameObject.CompareTag("Civilian"))
+        if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Vip"))
 
         {
             

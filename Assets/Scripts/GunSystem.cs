@@ -74,7 +74,7 @@ public class GunSystem : MonoBehaviour
             UpdateUI();
         }
         
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(Input.mouseScrollDelta.y < 0f)
         {
             weaponIndex--;
             if (weaponIndex < 0)
@@ -87,7 +87,7 @@ public class GunSystem : MonoBehaviour
             spriteRenderer.sprite = gunSprite;
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.mouseScrollDelta.y > 0f)
         {
             weaponIndex++;
             if(weaponIndex > eq.GetBoughtGun().Count-1)
@@ -147,6 +147,7 @@ public class GunSystem : MonoBehaviour
 
         Vector2 spread = new Vector2(randomNumberX, randomNumberY);
         Vector2 shotPos = (Vector2)firePoint.position + spread;
+    
 
         GameObject bullet1 = Instantiate(bullet, shotPos, firePoint.rotation);
         Rigidbody2D rb = bullet1.GetComponent<Rigidbody2D>();

@@ -159,7 +159,7 @@ MonoBehaviour:
   timeBetweenShooting: 1
   canShoot: 1
   bullet: {fileID: 5916293462967756558, guid: 89a852bf9fbf3854abfdf608f8f7abc7, type: 3}
-  bulletSpeed: 4
+  bulletSpeed: 18
 --- !u!1001 &895342565
 PrefabInstance:
   m_ObjectHideFlags: 0
